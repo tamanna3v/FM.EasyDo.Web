@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>easyDO.AI — AI for Everyone</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init({publicKey:'YOUR_PUBLIC_KEY'});</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -390,24 +392,17 @@ async function submitApplication(btn) {
   btn.disabled = true;
   btn.textContent = 'Sending…';
   try {
-    var res = await fetch('/api/apply', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ firstName: fname, lastName: lname, email: email, message: msg })
+    await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+      from_name: fname + ' ' + lname,
+      reply_to: email,
+      message: msg
     });
-    var data = await res.json();
-    if (res.ok) {
-      btn.textContent = '✓ Submitted! We\'ll be in touch shortly.';
-      btn.style.background = '#0369a1';
-    } else {
-      btn.disabled = false;
-      btn.textContent = 'Submit Application →';
-      alert(data.error || 'Something went wrong. Please try again.');
-    }
-  } catch (e) {
+    btn.textContent = '✓ Submitted! We\'ll be in touch shortly.';
+    btn.style.background = '#0369a1';
+  } catch (err) {
     btn.disabled = false;
     btn.textContent = 'Submit Application →';
-    alert('Network error. Please try again.');
+    alert('Failed to send. Please try again or email us at support@easydo.ai');
   }
 }
 </script>
