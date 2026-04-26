@@ -6,7 +6,7 @@
 <title>easyDO.AI — AI for Everyone</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>emailjs.init({publicKey:'YOUR_PUBLIC_KEY'});</script>
+<script>emailjs.init({publicKey:'geyp-4URobDYEnmc_'});</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -392,7 +392,7 @@ async function submitApplication(btn) {
   btn.disabled = true;
   btn.textContent = 'Sending…';
   try {
-    await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+    await emailjs.send('service_p4hmjjv', 'template_updeu0q', {
       from_name: fname + ' ' + lname,
       reply_to: email,
       message: msg
