@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>easyDO.AI — AI for Everyone</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f4faf6;
+  --bg2:#edf7f0;
+  --white:#ffffff;
+  --border:#d4eadb;
+  --green:#2d9e5f;
+  --green-light:#4bbe80;
+  --green-pale:#c8eed8;
+  --green-xpale:#e6f5ec;
+  --text:#1a2e22;
+  --muted:#5a7a66;
+  --muted2:#8aaa94;
+  --radius:14px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 64px;background:rgba(244,250,246,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo{font-weight:900;font-size:1.35rem;color:var(--green);letter-spacing:-0.5px}
+.logo span{color:var(--text)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:600;transition:.18s}
+.nav-links a:hover{color:var(--green)}
+.nav-cta{background:var(--green);color:#fff;padding:10px 24px;border-radius:100px;text-decoration:none;font-size:.875rem;font-weight:700;transition:.2s}
+.nav-cta:hover{background:#227a49;transform:translateY(-1px)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:130px 24px 80px;background:linear-gradient(175deg,#fff 0%,var(--bg) 55%,var(--bg2) 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(45,158,95,.08) 0%,transparent 70%);top:20%;left:50%;transform:translateX(-50%);pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--green-xpale);border:1px solid var(--green-pale);border-radius:100px;padding:7px 18px;font-size:.78rem;color:var(--green);margin-bottom:28px;font-weight:700;letter-spacing:.2px}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--green-light)}
+h1{font-size:clamp(2.6rem,5.5vw,5rem);font-weight:900;line-height:1.08;letter-spacing:-2px;max-width:860px;margin-bottom:22px;color:var(--text)}
+h1 em{font-style:normal;color:var(--green)}
+.hero-sub{font-size:1.1rem;color:var(--muted);max-width:600px;line-height:1.75;margin-bottom:10px;font-weight:500}
+.hero-sub2{font-size:.92rem;color:var(--muted2);max-width:520px;margin-bottom:42px;font-weight:500}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn-green{background:var(--green);color:#fff;padding:14px 32px;border-radius:100px;text-decoration:none;font-weight:800;font-size:.95rem;transition:.2s;box-shadow:0 4px 20px rgba(45,158,95,.2)}
+.btn-green:hover{background:#227a49;box-shadow:0 6px 28px rgba(45,158,95,.3);transform:translateY(-2px)}
+.btn-outline{border:2px solid var(--border);color:var(--text);padding:14px 32px;border-radius:100px;text-decoration:none;font-weight:700;font-size:.95rem;transition:.2s;background:var(--white)}
+.btn-outline:hover{border-color:var(--green);color:var(--green)}
+.price-note{margin-top:18px;font-size:.82rem;color:var(--muted2);font-weight:600}
+.price-note strong{color:var(--green)}
+
+/* MARQUEE */
+.marquee-section{padding:52px 0;background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden}
+.marquee-label{text-align:center;font-size:.72rem;color:var(--muted2);letter-spacing:2.5px;text-transform:uppercase;font-weight:700;margin-bottom:22px}
+.marquee-wrap{overflow:hidden}
+.marquee-track{display:flex;gap:14px;animation:slide 22s linear infinite;width:max-content}
+@keyframes slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.chip{display:inline-flex;align-items:center;gap:9px;background:var(--bg);border:1px solid var(--border);border-radius:100px;padding:9px 20px;font-size:.82rem;font-weight:700;color:var(--text);white-space:nowrap}
+.chip-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* SECTIONS */
+section{padding:96px 64px}
+.label{font-size:.72rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.sec-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;letter-spacing:-1px;line-height:1.15;margin-bottom:16px;color:var(--text)}
+.sec-body{color:var(--muted);font-size:.97rem;line-height:1.8;font-weight:500}
+
+/* FEATURES */
+.features{background:var(--white)}
+.feat-intro{text-align:center;max-width:620px;margin:0 auto 60px}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.feat-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:36px 30px;transition:.22s}
+.feat-card:hover{border-color:var(--green-pale);background:var(--green-xpale);transform:translateY(-3px)}
+.feat-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:20px;background:var(--white);border:1px solid var(--border)}
+.feat-card h3{font-size:1.05rem;font-weight:800;margin-bottom:10px;color:var(--text)}
+.feat-card p{color:var(--muted);font-size:.875rem;line-height:1.72;font-weight:500}
+
+/* SPLIT */
+.split-sec{background:var(--bg2)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.steps{display:flex;flex-direction:column;gap:28px;margin-top:36px}
+.step{display:flex;gap:18px;align-items:flex-start}
+.step-num{min-width:34px;height:34px;border-radius:10px;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.85rem;flex-shrink:0}
+.step-body h4{font-weight:800;margin-bottom:5px;color:var(--text)}
+.step-body p{color:var(--muted);font-size:.875rem;line-height:1.65;font-weight:500}
+.visual-card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:16px}
+.vc-row{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:var(--bg);border:1px solid var(--border);border-radius:10px}
+.vc-left{display:flex;align-items:center;gap:12px;font-size:.85rem;font-weight:700;color:var(--text)}
+.vc-icon{width:32px;height:32px;border-radius:8px;background:var(--green-xpale);border:1px solid var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.vc-tag{font-size:.72rem;font-weight:700;background:var(--green-pale);color:var(--green);padding:3px 10px;border-radius:100px}
+.vc-stat{background:var(--green);border-radius:12px;padding:20px 24px;display:flex;justify-content:space-between;align-items:center}
+.vc-stat-label{color:rgba(255,255,255,.75);font-size:.78rem;font-weight:700}
+.vc-stat-val{color:#fff;font-size:1.5rem;font-weight:900}
+
+/* PRICING */
+.pricing-sec{background:var(--white);text-align:center}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:860px;margin:56px auto 0}
+.p-card{background:var(--bg);border:1.5px solid var(--border);border-radius:20px;padding:40px 32px;text-align:left;position:relative}
+.p-card.featured{background:var(--green);border-color:var(--green)}
+.p-pop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--text);color:#fff;font-size:.72rem;font-weight:800;padding:5px 16px;border-radius:100px;white-space:nowrap;letter-spacing:.5px}
+.p-name{font-size:.75rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.p-card.featured .p-name{color:rgba(255,255,255,.7)}
+.p-amt{font-size:3.2rem;font-weight:900;letter-spacing:-2px;color:var(--text);line-height:1}
+.p-card.featured .p-amt{color:#fff}
+.p-amt sup{font-size:1.2rem;vertical-align:top;margin-top:8px;letter-spacing:0}
+.p-period{font-size:.82rem;color:var(--muted2);margin-bottom:28px;font-weight:600}
+.p-card.featured .p-period{color:rgba(255,255,255,.65)}
+.p-list{list-style:none;display:flex;flex-direction:column;gap:11px}
+.p-list li{display:flex;gap:9px;font-size:.875rem;color:var(--muted);font-weight:600}
+.p-card.featured .p-list li{color:rgba(255,255,255,.85)}
+.p-list li::before{content:'✓';color:var(--green);font-weight:900;flex-shrink:0}
+.p-card.featured .p-list li::before{color:#fff}
+.p-btn{display:block;text-align:center;margin-top:32px;padding:13px;border-radius:100px;text-decoration:none;font-weight:800;font-size:.9rem;transition:.2s}
+.p-btn.out{border:2px solid var(--border);color:var(--text);background:var(--white)}
+.p-btn.out:hover{border-color:var(--green);color:var(--green)}
+.p-btn.wht{background:#fff;color:var(--green)}
+.p-btn.wht:hover{background:var(--bg2)}
+
+/* APPLY */
+.apply-sec{background:var(--bg2)}
+.apply-inner{max-width:680px;margin:0 auto}
+.apply-form{display:flex;flex-direction:column;gap:14px;margin-top:36px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.apply-form input,.apply-form textarea{background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:14px 18px;color:var(--text);font-size:.9rem;font-family:'Nunito',sans-serif;font-weight:600;outline:none;transition:.2s;width:100%}
+.apply-form input:focus,.apply-form textarea:focus{border-color:var(--green)}
+.apply-form input::placeholder,.apply-form textarea::placeholder{color:var(--muted2)}
+.apply-form textarea{min-height:110px;resize:vertical}
+.sub-btn{background:var(--green);color:#fff;border:none;padding:15px;border-radius:100px;font-size:.95rem;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;transition:.2s;width:100%}
+.sub-btn:hover{background:#227a49;transform:translateY(-1px)}
+
+/* FOOTER */
+footer{background:var(--white);border-top:1px solid var(--border);padding:48px 64px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.f-logo{font-weight:900;font-size:1.2rem;color:var(--green)}
+.f-links{display:flex;gap:28px;flex-wrap:wrap}
+.f-links a{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:600;transition:.18s}
+.f-links a:hover{color:var(--green)}
+.f-copy{color:var(--muted2);font-size:.78rem;font-weight:600}
+
+@media(max-width:860px){
+  nav{padding:14px 20px}
+  .nav-links{display:none}
+  section{padding:72px 20px}
+  .split{grid-template-columns:1fr}
+  footer{padding:36px 20px;flex-direction:column}
+  .row2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">easyDO<span>.AI</span></div>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#apply">Apply</a></li>
+  </ul>
+  <a href="https://app.easydo.ai/" target="_blank" class="nav-cta">Launch App →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge"><div class="badge-dot"></div> Now live — from just $1/month</div>
+  <h1>Do Everything<br>with AI, <em>Easily.</em></h1>
+  <p class="hero-sub">Instant access to top AI models. Build prompt-powered apps in minutes. Collaborate in shared workspaces. Pay only for what you use.</p>
+  <p class="hero-sub2">No subscriptions. No lock-ins. Fast, flexible, and affordable AI for individuals and teams.</p>
+  <div class="hero-btns">
+    <a href="https://app.easydo.ai/" target="_blank" class="btn-green">Get Started Free →</a>
+    <a href="#features" class="btn-outline">See Features</a>
+  </div>
+  <p class="price-note">Starting at <strong>$1/month</strong> + pay-as-you-go · Cancel anytime</p>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <p class="marquee-label">All frontier AI models — one platform</p>
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="chip"><span class="chip-dot" style="background:#10a37f"></span>GPT-4o</div>
+      <div class="chip"><span class="chip-dot" style="background:#6c63ff"></span>Claude 3</div>
+      <div class="chip"><span class="chip-dot" style="background:#4285f4"></span>Gemini 2.5</div>
+      <div class="chip"><span class="chip-dot" style="background:#f59e0b"></span>DALL·E</div>
+      <div class="chip"><span class="chip-dot" style="background:#2d9e5f"></span>Whisper</div>
+      <div class="chip"><span class="chip-dot" style="background:#f43f5e"></span>Deepseek</div>
+      <div class="chip"><span class="chip-dot" style="background:#a78bfa"></span>Llama 3</div>
+      <div class="chip"><span class="chip-dot" style="background:#0ea5e9"></span>Mistral</div>
+      <div class="chip"><span class="chip-dot" style="background:#10a37f"></span>GPT-4o</div>
+      <div class="chip"><span class="chip-dot" style="background:#6c63ff"></span>Claude 3</div>
+      <div class="chip"><span class="chip-dot" style="background:#4285f4"></span>Gemini 2.5</div>
+      <div class="chip"><span class="chip-dot" style="background:#f59e0b"></span>DALL·E</div>
+      <div class="chip"><span class="chip-dot" style="background:#2d9e5f"></span>Whisper</div>
+      <div class="chip"><span class="chip-dot" style="background:#f43f5e"></span>Deepseek</div>
+      <div class="chip"><span class="chip-dot" style="background:#a78bfa"></span>Llama 3</div>
+      <div class="chip"><span class="chip-dot" style="background:#0ea5e9"></span>Mistral</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="feat-intro">
+    <p class="label">What You Get</p>
+    <h2 class="sec-title">Everything to Move Fast with AI</h2>
+    <p class="sec-body">One platform. All the models. Built for speed, built for teams, built for results.</p>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon">⚡</div>
+      <h3>Build Apps in Minutes</h3>
+      <p>No code. No wait. Plug in your prompt and launch. Design AI tools tailored to your workflow in under 5 minutes.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🤖</div>
+      <h3>All Frontier Models On Demand</h3>
+      <p>GPT-4o, Gemini 2.5, Claude 3, DALL·E, Whisper, Deepseek and more. Mix voice, image, and text in one interface.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">👥</div>
+      <h3>Shared Team Workspace</h3>
+      <p>Set up your team, build shared apps, and automate tasks together — full-featured AI access from just $1/month.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🎙️</div>
+      <h3>Voice, Image & Text — Unified</h3>
+      <p>Transcribe with Whisper, generate images with DALL·E, chat with any LLM — all in one seamless interface.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">💳</div>
+      <h3>Pay Only for What You Use</h3>
+      <p>No subscriptions. No lock-ins. Flexible pay-as-you-go pricing. Start at $1/month and scale on your own terms.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🧠</div>
+      <h3>EasyDo Avatar</h3>
+      <p>Deploy branded AI voice avatars for intake, onboarding, and customer interaction — tailored to your workflow.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="split-sec" id="how">
+  <div class="split">
+    <div>
+      <p class="label">How It Works</p>
+      <h2 class="sec-title">From Prompt to Product — in Minutes</h2>
+      <p class="sec-body">easyDO.AI strips away complexity so you can focus on building. No DevOps. No steep learning curve. Just results.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Sign Up & Load Credits</h4>
+            <p>Get started with as little as $1. No subscription. Credits never expire.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Choose Your AI Model</h4>
+            <p>Pick from GPT-4o, Claude, Gemini, Deepseek and more — switch models anytime.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Build or Use Instantly</h4>
+            <p>Launch a pre-built app or design your own prompt-powered tool in under 5 minutes.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4>Collaborate with Your Team</h4>
+            <p>Invite teammates, share apps, automate workflows — move faster together.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="visual-card">
+      <div class="vc-row">
+        <div class="vc-left"><div class="vc-icon">📝</div> Blog Writer</div>
+        <span class="vc-tag">GPT-4o</span>
+      </div>
+      <div class="vc-row">
+        <div class="vc-left"><div class="vc-icon">🎙️</div> Meeting Notes</div>
+        <span class="vc-tag">Whisper</span>
+      </div>
+      <div class="vc-row">
+        <div class="vc-left"><div class="vc-icon">🖼️</div> Brand Assets</div>
+        <span class="vc-tag">DALL·E 3</span>
+      </div>
+      <div class="vc-row">
+        <div class="vc-left"><div class="vc-icon">💬</div> Support Bot</div>
+        <span class="vc-tag">Claude 3</span>
+      </div>
+      <div class="vc-stat">
+        <div>
+          <div class="vc-stat-label">TOTAL USED THIS MONTH</div>
+          <div class="vc-stat-val">$1.24</div>
+        </div>
+        <div>
+          <div class="vc-stat-label">AUTOMATIONS LIVE</div>
+          <div class="vc-stat-val">4 🟢</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-sec" id="pricing">
+  <p class="label">Pricing</p>
+  <h2 class="sec-title">Simple, Transparent Pricing</h2>
+  <p class="sec-body" style="max-width:540px;margin:0 auto">No subscriptions. No lock-ins. Pay only for what you use — with a minimal monthly base to keep your workspace active.</p>
+  <div class="price-grid">
+    <div class="p-card">
+      <div class="p-name">Solo</div>
+      <div class="p-amt"><sup>$</sup>1</div>
+      <div class="p-period">/ month + pay-as-you-go</div>
+      <ul class="p-list">
+        <li>All frontier AI models</li>
+        <li>Unlimited prompt-powered apps</li>
+        <li>Voice, image & text — unified</li>
+        <li>Pay per model usage only</li>
+        <li>No subscription lock-in</li>
+      </ul>
+      <a href="https://app.easydo.ai/" target="_blank" class="p-btn out">Get Started</a>
+    </div>
+    <div class="p-card featured">
+      <div class="p-pop">🔥 Most Popular</div>
+      <div class="p-name">Team</div>
+      <div class="p-amt"><sup>$</sup>1</div>
+      <div class="p-period">/ month · min. 3 members</div>
+      <ul class="p-list">
+        <li>Everything in Solo</li>
+        <li>Shared team workspace</li>
+        <li>Min. 3 AI automations</li>
+        <li>Collaborative app building</li>
+        <li>Custom-trained workspace</li>
+        <li>Priority onboarding support</li>
+      </ul>
+      <a href="#apply" class="p-btn wht">Apply Now →</a>
+    </div>
+  </div>
+</section>
+
+<!-- APPLY -->
+<section class="apply-sec" id="apply">
+  <div class="apply-inner">
+    <p class="label">Early Access</p>
+    <h2 class="sec-title">Apply Now — Fast-Track Your Team's AI Setup</h2>
+    <p class="sec-body">Get exclusive early access for your team. Share the AI tools or automations your team already uses — we'll tailor and train your workspace accordingly, with a minimum of three automations included.</p>
+    <div class="apply-form">
+      <div class="row2">
+        <input type="text" placeholder="First Name *"/>
+        <input type="text" placeholder="Last Name *"/>
+      </div>
+      <input type="email" placeholder="Email *"/>
+      <textarea placeholder="Tell us about the AI tools your team already uses, and what you'd like to automate *"></textarea>
+      <button class="sub-btn" onclick="this.textContent='✓ Submitted! We\'ll be in touch shortly.';this.style.background='#227a49'">Submit Application →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">easyDO.AI</div>
+  <div class="f-links">
+    <a href="https://easydo.ai/" target="_blank">EasyDo App</a>
+    <a href="https://easydo.ai/avatar" target="_blank">Avatar</a>
+    <a href="https://easydo.ai/build-together" target="_blank">Build Together</a>
+    <a href="https://easydo.ai/aipa" target="_blank">AI-PA</a>
+    <a href="https://easydo.ai/resources" target="_blank">Resources</a>
+  </div>
+  <div class="f-copy">© 2025 easyDO.AI · AI for Everyone.</div>
+</footer>
+
+</body>
+</html>
