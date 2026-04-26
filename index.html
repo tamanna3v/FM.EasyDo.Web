@@ -378,7 +378,7 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:48px 6
 </footer>
 
 <script>
-function submitApplication(btn) {
+async function submitApplication(btn) {
   var fname = document.getElementById('apply-fname').value.trim();
   var lname = document.getElementById('apply-lname').value.trim();
   var email = document.getElementById('apply-email').value.trim();
@@ -387,15 +387,28 @@ function submitApplication(btn) {
     alert('Please fill in all fields before submitting.');
     return;
   }
-  var subject = encodeURIComponent('Early Access Application – ' + fname + ' ' + lname);
-  var body = encodeURIComponent(
-    'Name: ' + fname + ' ' + lname + '\n' +
-    'Email: ' + email + '\n\n' +
-    msg
-  );
-  window.location.href = 'mailto:support@easydo.ai?subject=' + subject + '&body=' + body;
-  btn.textContent = '✓ Submitted! We\'ll be in touch shortly.';
-  btn.style.background = '#0369a1';
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  try {
+    var res = await fetch('/api/apply', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ firstName: fname, lastName: lname, email: email, message: msg })
+    });
+    var data = await res.json();
+    if (res.ok) {
+      btn.textContent = '✓ Submitted! We\'ll be in touch shortly.';
+      btn.style.background = '#0369a1';
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Submit Application →';
+      alert(data.error || 'Something went wrong. Please try again.');
+    }
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Submit Application →';
+    alert('Network error. Please try again.');
+  }
 }
 </script>
 </body>
