@@ -8,35 +8,35 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#f4faf6;
-  --bg2:#edf7f0;
+  --bg:#f0f8ff;
+  --bg2:#e0f4fd;
   --white:#ffffff;
-  --border:#d4eadb;
-  --green:#2d9e5f;
-  --green-light:#4bbe80;
-  --green-pale:#c8eed8;
-  --green-xpale:#e6f5ec;
-  --text:#1a2e22;
-  --muted:#5a7a66;
-  --muted2:#8aaa94;
+  --border:#bae0f8;
+  --green:#0284c7;
+  --green-light:#38bdf8;
+  --green-pale:#bae6fd;
+  --green-xpale:#e0f2fe;
+  --text:#0c1a2e;
+  --muted:#4b6a8a;
+  --muted2:#7a9ab8;
   --radius:14px;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 64px;background:rgba(244,250,246,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 64px;background:rgba(240,248,255,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
 .logo{font-weight:900;font-size:1.35rem;color:var(--green);letter-spacing:-0.5px}
 .logo span{color:var(--text)}
 .nav-links{display:flex;gap:32px;list-style:none}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:600;transition:.18s}
 .nav-links a:hover{color:var(--green)}
 .nav-cta{background:var(--green);color:#fff;padding:10px 24px;border-radius:100px;text-decoration:none;font-size:.875rem;font-weight:700;transition:.2s}
-.nav-cta:hover{background:#227a49;transform:translateY(-1px)}
+.nav-cta:hover{background:#0369a1;transform:translateY(-1px)}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:130px 24px 80px;background:linear-gradient(175deg,#fff 0%,var(--bg) 55%,var(--bg2) 100%);position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(45,158,95,.08) 0%,transparent 70%);top:20%;left:50%;transform:translateX(-50%);pointer-events:none}
+.hero::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(2,132,199,.08) 0%,transparent 70%);top:20%;left:50%;transform:translateX(-50%);pointer-events:none}
 .badge{display:inline-flex;align-items:center;gap:8px;background:var(--green-xpale);border:1px solid var(--green-pale);border-radius:100px;padding:7px 18px;font-size:.78rem;color:var(--green);margin-bottom:28px;font-weight:700;letter-spacing:.2px}
 .badge-dot{width:7px;height:7px;border-radius:50%;background:var(--green-light)}
 h1{font-size:clamp(2.6rem,5.5vw,5rem);font-weight:900;line-height:1.08;letter-spacing:-2px;max-width:860px;margin-bottom:22px;color:var(--text)}
@@ -44,8 +44,8 @@ h1 em{font-style:normal;color:var(--green)}
 .hero-sub{font-size:1.1rem;color:var(--muted);max-width:600px;line-height:1.75;margin-bottom:10px;font-weight:500}
 .hero-sub2{font-size:.92rem;color:var(--muted2);max-width:520px;margin-bottom:42px;font-weight:500}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.btn-green{background:var(--green);color:#fff;padding:14px 32px;border-radius:100px;text-decoration:none;font-weight:800;font-size:.95rem;transition:.2s;box-shadow:0 4px 20px rgba(45,158,95,.2)}
-.btn-green:hover{background:#227a49;box-shadow:0 6px 28px rgba(45,158,95,.3);transform:translateY(-2px)}
+.btn-green{background:var(--green);color:#fff;padding:14px 32px;border-radius:100px;text-decoration:none;font-weight:800;font-size:.95rem;transition:.2s;box-shadow:0 4px 20px rgba(2,132,199,.2)}
+.btn-green:hover{background:#0369a1;box-shadow:0 6px 28px rgba(2,132,199,.3);transform:translateY(-2px)}
 .btn-outline{border:2px solid var(--border);color:var(--text);padding:14px 32px;border-radius:100px;text-decoration:none;font-weight:700;font-size:.95rem;transition:.2s;background:var(--white)}
 .btn-outline:hover{border-color:var(--green);color:var(--green)}
 .price-note{margin-top:18px;font-size:.82rem;color:var(--muted2);font-weight:600}
@@ -127,7 +127,7 @@ section{padding:96px 64px}
 .apply-form input::placeholder,.apply-form textarea::placeholder{color:var(--muted2)}
 .apply-form textarea{min-height:110px;resize:vertical}
 .sub-btn{background:var(--green);color:#fff;border:none;padding:15px;border-radius:100px;font-size:.95rem;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;transition:.2s;width:100%}
-.sub-btn:hover{background:#227a49;transform:translateY(-1px)}
+.sub-btn:hover{background:#0369a1;transform:translateY(-1px)}
 
 /* FOOTER */
 footer{background:var(--white);border-top:1px solid var(--border);padding:48px 64px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
@@ -183,7 +183,7 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:48px 6
       <div class="chip"><span class="chip-dot" style="background:#6c63ff"></span>Claude 3</div>
       <div class="chip"><span class="chip-dot" style="background:#4285f4"></span>Gemini 2.5</div>
       <div class="chip"><span class="chip-dot" style="background:#f59e0b"></span>DALL·E</div>
-      <div class="chip"><span class="chip-dot" style="background:#2d9e5f"></span>Whisper</div>
+      <div class="chip"><span class="chip-dot" style="background:#0284c7"></span>Whisper</div>
       <div class="chip"><span class="chip-dot" style="background:#f43f5e"></span>Deepseek</div>
       <div class="chip"><span class="chip-dot" style="background:#a78bfa"></span>Llama 3</div>
       <div class="chip"><span class="chip-dot" style="background:#0ea5e9"></span>Mistral</div>
@@ -191,7 +191,7 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:48px 6
       <div class="chip"><span class="chip-dot" style="background:#6c63ff"></span>Claude 3</div>
       <div class="chip"><span class="chip-dot" style="background:#4285f4"></span>Gemini 2.5</div>
       <div class="chip"><span class="chip-dot" style="background:#f59e0b"></span>DALL·E</div>
-      <div class="chip"><span class="chip-dot" style="background:#2d9e5f"></span>Whisper</div>
+      <div class="chip"><span class="chip-dot" style="background:#0284c7"></span>Whisper</div>
       <div class="chip"><span class="chip-dot" style="background:#f43f5e"></span>Deepseek</div>
       <div class="chip"><span class="chip-dot" style="background:#a78bfa"></span>Llama 3</div>
       <div class="chip"><span class="chip-dot" style="background:#0ea5e9"></span>Mistral</div>
@@ -359,7 +359,7 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:48px 6
       </div>
       <input type="email" placeholder="Email *"/>
       <textarea placeholder="Tell us about the AI tools your team already uses, and what you'd like to automate *"></textarea>
-      <button class="sub-btn" onclick="this.textContent='✓ Submitted! We\'ll be in touch shortly.';this.style.background='#227a49'">Submit Application →</button>
+      <button class="sub-btn" onclick="this.textContent='✓ Submitted! We\'ll be in touch shortly.';this.style.background='#0369a1'">Submit Application →</button>
     </div>
   </div>
 </section>
