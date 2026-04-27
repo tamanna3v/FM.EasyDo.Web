@@ -36,6 +36,35 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-cta{background:var(--green);color:#fff;padding:10px 24px;border-radius:100px;text-decoration:none;font-size:.875rem;font-weight:700;transition:.2s}
 .nav-cta:hover{background:#0369a1;transform:translateY(-1px)}
 
+/* PLATFORM MEGA-MENU */
+.dropdown-toggle{display:inline-flex;align-items:center;gap:5px;cursor:pointer}
+.dd-arrow{font-size:.6rem;transition:transform .2s;line-height:1;opacity:.65}
+.has-dropdown:hover .dd-arrow{transform:rotate(180deg)}
+.mega-menu{
+  visibility:hidden;opacity:0;pointer-events:none;
+  position:absolute;top:100%;left:0;right:0;
+  background:var(--white);
+  border-top:2px solid var(--green);
+  border-bottom:1px solid var(--border);
+  padding:40px 64px;
+  display:flex;
+  z-index:99;
+  box-shadow:0 16px 48px rgba(0,0,0,.09);
+  transition:opacity .18s,visibility .18s;
+}
+.has-dropdown:hover .mega-menu{visibility:visible;opacity:1;pointer-events:auto}
+.mega-col{flex:1;padding:0 28px}
+.mega-col:first-child{padding-left:0}
+.mega-col:last-child{padding-right:0}
+.mega-col-title{font-size:.67rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted2);margin-bottom:18px}
+.mega-item{display:block;padding:13px 0;border-bottom:1px solid var(--border);text-decoration:none;transition:.15s}
+.mega-item:last-child{border-bottom:none}
+.mega-item:hover .mega-item-name{color:var(--green)}
+.mega-item-name{font-size:.88rem;font-weight:800;color:var(--text);margin-bottom:3px;display:flex;align-items:center;gap:8px}
+.mega-item-desc{font-size:.78rem;color:var(--muted);font-weight:500;line-height:1.5}
+.mega-badge{font-size:.6rem;font-weight:800;background:var(--green);color:#fff;padding:2px 8px;border-radius:100px;letter-spacing:.3px}
+.mega-divider{width:1px;background:var(--border);margin:0 4px;flex-shrink:0;align-self:stretch}
+
 /* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:130px 24px 80px;background:linear-gradient(175deg,#fff 0%,var(--bg) 55%,var(--bg2) 100%);position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(2,132,199,.08) 0%,transparent 70%);top:20%;left:50%;transform:translateX(-50%);pointer-events:none}
@@ -155,7 +184,91 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:48px 6
 <nav>
   <div class="logo">easyDO<span>.AI</span></div>
   <ul class="nav-links">
-    <li><a href="#features">Features</a></li>
+    <li class="has-dropdown">
+      <a href="#features" class="dropdown-toggle">Platform <span class="dd-arrow">▾</span></a>
+      <div class="mega-menu">
+
+        <!-- Column 1: EasyDo For -->
+        <div class="mega-col">
+          <div class="mega-col-title">EasyDo For</div>
+          <a href="#features" class="mega-item">
+            <div class="mega-item-name">Build Custom AI Apps</div>
+            <div class="mega-item-desc">Design prompt-powered tools tailored to your workflow</div>
+          </a>
+          <a href="#features" class="mega-item">
+            <div class="mega-item-name">Team Collaboration</div>
+            <div class="mega-item-desc">Build and share AI apps across your entire organization</div>
+          </a>
+          <a href="#features" class="mega-item">
+            <div class="mega-item-name">Customer Onboarding</div>
+            <div class="mega-item-desc">Guide users with branded AI voice interactions</div>
+          </a>
+          <a href="#features" class="mega-item">
+            <div class="mega-item-name">Sales &amp; Marketing</div>
+            <div class="mega-item-desc">Generate content and creative assets at scale</div>
+          </a>
+          <a href="#features" class="mega-item">
+            <div class="mega-item-name">Meetings &amp; Productivity</div>
+            <div class="mega-item-desc">Transcribe, summarize, and automate workflows</div>
+          </a>
+        </div>
+
+        <div class="mega-divider"></div>
+
+        <!-- Column 2: Platform Tools -->
+        <div class="mega-col">
+          <div class="mega-col-title">Platform Tools</div>
+          <a href="#features" class="mega-item">
+            <div class="mega-item-name">No-Code App Builder</div>
+            <div class="mega-item-desc">Launch AI-powered tools in under 5 minutes</div>
+          </a>
+          <a href="#features" class="mega-item">
+            <div class="mega-item-name">All Frontier AI Models</div>
+            <div class="mega-item-desc">GPT-4o, Gemini 2.5, Claude 3, Deepseek &amp; more</div>
+          </a>
+          <a href="https://easydo.ai/avatar" target="_blank" class="mega-item">
+            <div class="mega-item-name">EasyDo Avatar <span class="mega-badge">NEW</span></div>
+            <div class="mega-item-desc">Branded AI voice avatars for intake and onboarding</div>
+          </a>
+          <a href="https://easydo.ai/aipa" target="_blank" class="mega-item">
+            <div class="mega-item-name">AI-PA</div>
+            <div class="mega-item-desc">Your always-on AI personal assistant</div>
+          </a>
+          <a href="https://easydo.ai/build-together" target="_blank" class="mega-item">
+            <div class="mega-item-name">Build Together</div>
+            <div class="mega-item-desc">Co-create and share AI apps in real time</div>
+          </a>
+        </div>
+
+        <div class="mega-divider"></div>
+
+        <!-- Column 3: Plans & Pricing -->
+        <div class="mega-col">
+          <div class="mega-col-title">Plans &amp; Pricing</div>
+          <a href="#pricing" class="mega-item">
+            <div class="mega-item-name">Pay As You Go</div>
+            <div class="mega-item-desc">No subscriptions — pay only for what you use</div>
+          </a>
+          <a href="#pricing" class="mega-item">
+            <div class="mega-item-name">Shared Team Workspace</div>
+            <div class="mega-item-desc">Full AI access for your team from just $1/month</div>
+          </a>
+          <a href="#features" class="mega-item">
+            <div class="mega-item-name">Multi-Modal Support</div>
+            <div class="mega-item-desc">Voice, image, and text — unified in one interface</div>
+          </a>
+          <a href="#features" class="mega-item">
+            <div class="mega-item-name">Pre-Built Apps</div>
+            <div class="mega-item-desc">Start instantly with ready-made AI tools</div>
+          </a>
+          <a href="#pricing" class="mega-item">
+            <div class="mega-item-name">Credits That Never Expire</div>
+            <div class="mega-item-desc">Flexible usage with no time pressure or lock-in</div>
+          </a>
+        </div>
+
+      </div>
+    </li>
     <li><a href="#how">How It Works</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#apply">Apply</a></li>
