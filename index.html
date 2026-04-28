@@ -124,6 +124,77 @@ section{padding:96px 64px}
 .vc-stat-label{color:rgba(255,255,255,.75);font-size:.78rem;font-weight:700}
 .vc-stat-val{color:#fff;font-size:1.5rem;font-weight:900}
 
+/* MOTION CARD — animated "build in 5 minutes" mock */
+.motion-card{position:relative;perspective:1400px}
+.motion-card::before{content:'';position:absolute;inset:-30px -20px;background:radial-gradient(circle at 70% 30%,rgba(56,189,248,.18),transparent 60%),radial-gradient(circle at 20% 80%,rgba(2,132,199,.12),transparent 55%);filter:blur(20px);z-index:0;animation:mc-glow 7s ease-in-out infinite}
+@keyframes mc-glow{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.04)}}
+.mc-frame{position:relative;background:var(--white);border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 60px -20px rgba(2,132,199,.28),0 4px 18px rgba(12,26,46,.06);overflow:hidden;transform:rotateX(2deg) rotateY(-3deg);transform-style:preserve-3d;z-index:1}
+.mc-topbar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.mc-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.mc-dot.r{background:#ff6b6b}
+.mc-dot.y{background:#ffd166}
+.mc-dot.g{background:#3bd671}
+.mc-url{flex:1;text-align:center;font-size:.72rem;font-weight:700;color:var(--muted2);background:var(--white);border:1px solid var(--border);border-radius:6px;padding:4px 10px;letter-spacing:.2px}
+.mc-timer{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:800;color:var(--green);background:var(--green-xpale);border:1px solid var(--green-pale);border-radius:100px;padding:3px 10px;font-variant-numeric:tabular-nums}
+.mc-timer-pulse{width:6px;height:6px;border-radius:50%;background:var(--green);animation:mc-pulse 1.4s ease-in-out infinite}
+@keyframes mc-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+.mc-stage{position:relative;padding:28px 26px 26px;min-height:430px;background:linear-gradient(180deg,#fff 0%,var(--green-xpale) 100%)}
+
+/* Greeting */
+.mc-greeting{text-align:center}
+.mc-sun{font-size:1.6rem;animation:mc-spin 6s linear infinite;display:inline-block;transform-origin:center}
+@keyframes mc-spin{to{transform:rotate(360deg)}}
+.mc-good{font-size:1.6rem;font-weight:900;letter-spacing:-1px;color:var(--text);margin-top:4px}
+.mc-help{font-size:.78rem;color:var(--muted);font-weight:600;margin-top:4px}
+
+/* Prompt input */
+.mc-prompt{margin-top:20px;background:var(--white);border:1.5px solid var(--green-pale);border-radius:14px;padding:12px 14px;box-shadow:0 8px 24px -10px rgba(2,132,199,.18);animation:mc-prompt-pop 9s ease-in-out infinite;transform-origin:center}
+@keyframes mc-prompt-pop{0%,32%{transform:scale(1);box-shadow:0 8px 24px -10px rgba(2,132,199,.18)}35%{transform:scale(1.02);box-shadow:0 12px 28px -10px rgba(2,132,199,.35)}40%,100%{transform:scale(1);box-shadow:0 8px 24px -10px rgba(2,132,199,.18)}}
+.mc-tag{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--green-xpale),var(--green-pale));color:var(--green);font-size:.78rem;font-weight:800;padding:5px 12px;border-radius:100px;margin-bottom:10px}
+.mc-tag-avatar{width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,#f472b6,#ec4899)}
+.mc-typed{font-size:.88rem;font-weight:600;color:var(--text);min-height:22px;line-height:1.5}
+.mc-text{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:bottom;max-width:100%;width:0;animation:mc-type 9s steps(35,end) infinite}
+.mc-text::before{content:'I want to make my CV in ATS format.'}
+.mc-caret{display:inline-block;width:2px;height:14px;background:var(--green);vertical-align:middle;margin-left:2px;animation:mc-blink 1s steps(2) infinite}
+@keyframes mc-type{0%{width:0}33%{width:35ch}38%,100%{width:35ch}}
+@keyframes mc-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.mc-prompt-meta{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}
+.mc-model{font-size:.72rem;font-weight:700;color:var(--muted);background:var(--bg);border:1px solid var(--border);padding:4px 10px;border-radius:100px}
+.mc-send{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:var(--green);color:#fff;font-size:.78rem;font-weight:900;animation:mc-send-glow 9s ease-in-out infinite}
+@keyframes mc-send-glow{0%,30%{box-shadow:0 0 0 0 rgba(2,132,199,.0)}33%{box-shadow:0 0 0 8px rgba(2,132,199,.0)}35%{box-shadow:0 0 0 0 rgba(2,132,199,.6)}45%{box-shadow:0 0 0 16px rgba(2,132,199,0)}100%{box-shadow:0 0 0 0 rgba(2,132,199,0)}}
+
+/* Config panel slides in */
+.mc-config{position:absolute;left:26px;right:26px;bottom:84px;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 18px 44px -16px rgba(12,26,46,.22);opacity:0;transform:translateY(24px) scale(.96);animation:mc-slide-in 9s ease-in-out infinite}
+@keyframes mc-slide-in{0%,40%{opacity:0;transform:translateY(24px) scale(.96)}50%,82%{opacity:1;transform:translateY(0) scale(1)}90%,100%{opacity:0;transform:translateY(-10px) scale(.98)}}
+.mc-cfg-head{display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:10px}
+.mc-cfg-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#f472b6,#ec4899);flex-shrink:0}
+.mc-cfg-name{font-size:.85rem;font-weight:800;color:var(--text)}
+.mc-cfg-sub{font-size:.7rem;color:var(--muted2);font-weight:600;margin-top:1px}
+.mc-cfg-row{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:.75rem}
+.mc-cfg-k{flex:1;color:var(--muted);font-weight:700}
+.mc-pill{font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:100px;background:var(--green-xpale);color:var(--green);border:1px solid var(--green-pale)}
+.mc-pill.dark{background:var(--text);color:#fff;border-color:var(--text)}
+.mc-pill.ghost{background:transparent;color:var(--muted2);border:1px solid var(--border)}
+.mc-cfg-bar{height:5px;background:var(--bg);border-radius:100px;margin-top:12px;overflow:hidden}
+.mc-cfg-bar-fill{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--green-light),var(--green));border-radius:100px;animation:mc-fill 9s ease-out infinite}
+@keyframes mc-fill{0%,40%{width:0}55%{width:35%}70%{width:75%}82%{width:100%}90%,100%{width:100%;opacity:.4}}
+
+/* Built badge */
+.mc-built{position:absolute;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);display:inline-flex;align-items:center;gap:8px;background:var(--text);color:#fff;font-size:.78rem;font-weight:800;padding:9px 16px;border-radius:100px;box-shadow:0 12px 28px -8px rgba(12,26,46,.4);opacity:0;white-space:nowrap;animation:mc-built-in 9s ease-out infinite}
+.mc-built strong{color:var(--green-light)}
+.mc-spark{display:inline-block;animation:mc-spark 1.6s ease-in-out infinite}
+@keyframes mc-spark{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.3) rotate(20deg)}}
+@keyframes mc-built-in{0%,75%{opacity:0;transform:translateX(-50%) translateY(20px)}82%,95%{opacity:1;transform:translateX(-50%) translateY(0)}100%{opacity:0;transform:translateX(-50%) translateY(-6px)}}
+
+@media(prefers-reduced-motion:reduce){
+  .motion-card *,.motion-card *::before,.motion-card *::after{animation:none!important;transition:none!important}
+  .mc-config,.mc-built{opacity:1;transform:translateX(-50%) translateY(0)}
+  .mc-config{transform:none}
+  .mc-text{width:auto}
+  .mc-cfg-bar-fill{width:100%}
+}
+
 /* PRICING */
 .pricing-sec{background:var(--white);text-align:center}
 .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:860px;margin:56px auto 0}
@@ -388,31 +459,71 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:48px 6
         </div>
       </div>
     </div>
-    <div class="visual-card">
-      <div class="vc-row">
-        <div class="vc-left"><div class="vc-icon">📝</div> Blog Writer</div>
-        <span class="vc-tag">GPT-4o</span>
-      </div>
-      <div class="vc-row">
-        <div class="vc-left"><div class="vc-icon">🎙️</div> Meeting Notes</div>
-        <span class="vc-tag">Whisper</span>
-      </div>
-      <div class="vc-row">
-        <div class="vc-left"><div class="vc-icon">🖼️</div> Brand Assets</div>
-        <span class="vc-tag">DALL·E 3</span>
-      </div>
-      <div class="vc-row">
-        <div class="vc-left"><div class="vc-icon">💬</div> Support Bot</div>
-        <span class="vc-tag">Claude 3</span>
-      </div>
-      <div class="vc-stat">
-        <div>
-          <div class="vc-stat-label">TOTAL USED THIS MONTH</div>
-          <div class="vc-stat-val">$1.24</div>
+    <div class="motion-card" aria-hidden="true">
+      <div class="mc-frame">
+        <div class="mc-topbar">
+          <span class="mc-dot r"></span>
+          <span class="mc-dot y"></span>
+          <span class="mc-dot g"></span>
+          <div class="mc-url">app.easydo.ai/build</div>
+          <div class="mc-timer"><span class="mc-timer-pulse"></span>5:00</div>
         </div>
-        <div>
-          <div class="vc-stat-label">AUTOMATIONS LIVE</div>
-          <div class="vc-stat-val">4 🟢</div>
+
+        <div class="mc-stage">
+          <!-- Greeting -->
+          <div class="mc-greeting">
+            <div class="mc-sun">☀️</div>
+            <div class="mc-good">Good morning</div>
+            <div class="mc-help">How can I help you today?</div>
+          </div>
+
+          <!-- Prompt with typing animation -->
+          <div class="mc-prompt">
+            <div class="mc-tag">
+              <span class="mc-tag-avatar"></span>
+              CVCrafter
+            </div>
+            <div class="mc-typed">
+              <span class="mc-text"></span><span class="mc-caret"></span>
+            </div>
+            <div class="mc-prompt-meta">
+              <span class="mc-model">⊕ Gemma-3</span>
+              <span class="mc-send">➤</span>
+            </div>
+          </div>
+
+          <!-- Config panel sliding in -->
+          <div class="mc-config">
+            <div class="mc-cfg-head">
+              <div class="mc-cfg-avatar"></div>
+              <div>
+                <div class="mc-cfg-name">CVCrafter</div>
+                <div class="mc-cfg-sub">Resume optimisation • ATS-ready</div>
+              </div>
+            </div>
+            <div class="mc-cfg-row">
+              <span class="mc-cfg-k">Category</span>
+              <span class="mc-pill">Productivity</span>
+            </div>
+            <div class="mc-cfg-row">
+              <span class="mc-cfg-k">App Type</span>
+              <span class="mc-pill dark">General</span>
+              <span class="mc-pill ghost">Voice</span>
+            </div>
+            <div class="mc-cfg-row">
+              <span class="mc-cfg-k">Knowledge</span>
+              <span class="mc-pill">+ Add Files</span>
+            </div>
+            <div class="mc-cfg-bar">
+              <span class="mc-cfg-bar-fill"></span>
+            </div>
+          </div>
+
+          <!-- Success badge -->
+          <div class="mc-built">
+            <span class="mc-spark">✨</span>
+            Live app built in <strong>under 5 minutes</strong>
+          </div>
         </div>
       </div>
     </div>
