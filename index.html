@@ -626,5 +626,70 @@ async function submitApplication(btn) {
   }
 }
 </script>
+
+<!-- WhatsApp Chat Widget -->
+<style>
+.wa-widget{position:fixed;bottom:24px;right:24px;z-index:9999;font-family:'Nunito',sans-serif}
+.wa-btn{width:60px;height:60px;border-radius:50%;background:#25D366;border:none;cursor:pointer;box-shadow:0 6px 20px rgba(37,211,102,.45);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;position:relative}
+.wa-btn:hover{transform:scale(1.08);box-shadow:0 8px 24px rgba(37,211,102,.6)}
+.wa-btn svg{width:32px;height:32px;fill:#fff}
+.wa-pulse{position:absolute;inset:0;border-radius:50%;background:#25D366;opacity:.5;animation:waPulse 2s infinite;z-index:-1}
+@keyframes waPulse{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.6);opacity:0}}
+.wa-panel{position:absolute;bottom:78px;right:0;width:320px;background:#fff;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.18);overflow:hidden;transform:translateY(10px) scale(.95);opacity:0;pointer-events:none;transition:.22s ease}
+.wa-panel.open{transform:translateY(0) scale(1);opacity:1;pointer-events:auto}
+.wa-header{background:#075E54;color:#fff;padding:16px 18px;display:flex;align-items:center;gap:12px}
+.wa-avatar{width:42px;height:42px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;color:#fff;flex-shrink:0}
+.wa-header-info{flex:1;min-width:0}
+.wa-header-name{font-weight:700;font-size:.95rem;line-height:1.2}
+.wa-header-status{font-size:.75rem;opacity:.85;display:flex;align-items:center;gap:5px;margin-top:2px}
+.wa-header-status::before{content:'';width:7px;height:7px;border-radius:50%;background:#25D366;display:inline-block}
+.wa-close{background:transparent;border:none;color:#fff;cursor:pointer;font-size:1.3rem;line-height:1;padding:4px 6px;opacity:.85}
+.wa-close:hover{opacity:1}
+.wa-body{background:#ECE5DD;background-image:radial-gradient(circle at 20% 30%,rgba(255,255,255,.4) 0,transparent 50%),radial-gradient(circle at 80% 70%,rgba(255,255,255,.3) 0,transparent 50%);padding:18px 16px;min-height:120px}
+.wa-bubble{background:#fff;border-radius:0 8px 8px 8px;padding:10px 12px;font-size:.85rem;color:#0c1a2e;line-height:1.45;box-shadow:0 1px 1px rgba(0,0,0,.08);max-width:85%;position:relative}
+.wa-bubble-time{font-size:.65rem;color:#7a9ab8;text-align:right;margin-top:4px}
+.wa-footer{padding:12px 14px;background:#fff;border-top:1px solid #eee}
+.wa-cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#25D366;color:#fff;text-decoration:none;padding:11px 16px;border-radius:24px;font-weight:700;font-size:.875rem;transition:.2s}
+.wa-cta:hover{background:#128C7E}
+.wa-cta svg{width:18px;height:18px;fill:#fff}
+@media (max-width:480px){.wa-panel{width:calc(100vw - 32px);right:0}.wa-widget{bottom:16px;right:16px}}
+</style>
+<div class="wa-widget">
+  <div class="wa-panel" id="waPanel" role="dialog" aria-label="WhatsApp chat">
+    <div class="wa-header">
+      <div class="wa-avatar">eD</div>
+      <div class="wa-header-info">
+        <div class="wa-header-name">easyDO.AI Support</div>
+        <div class="wa-header-status">Online</div>
+      </div>
+      <button class="wa-close" id="waClose" aria-label="Close chat">×</button>
+    </div>
+    <div class="wa-body">
+      <div class="wa-bubble">
+        Hi there! 👋<br/>How can we help you today?
+        <div class="wa-bubble-time">Now</div>
+      </div>
+    </div>
+    <div class="wa-footer">
+      <a class="wa-cta" id="waLink" href="https://wa.me/8801833180420?text=Hi%20easyDO.AI%2C%20I%27d%20like%20to%20know%20more" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1c-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.4-.2.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.5-.3z"/><path d="M20.5 3.5C18.3 1.2 15.2 0 12 0 5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.7 1 3.7 1.5 5.8 1.5 6.6 0 12-5.4 12-12 0-3.2-1.3-6.2-3.5-8.4zM12 21.8c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-3.7 1 1-3.6-.3-.4c-1.1-1.7-1.6-3.6-1.6-5.6 0-5.7 4.6-10.3 10.3-10.3 2.7 0 5.3 1.1 7.3 3 1.9 2 3 4.5 3 7.3 0 5.7-4.6 10.3-10.3 10.3z"/></svg>
+        Start Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+  <button class="wa-btn" id="waBtn" aria-label="Open WhatsApp chat">
+    <span class="wa-pulse"></span>
+    <svg viewBox="0 0 24 24"><path d="M20.5 3.5C18.3 1.2 15.2 0 12 0 5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.7 1 3.7 1.5 5.8 1.5 6.6 0 12-5.4 12-12 0-3.2-1.3-6.2-3.5-8.4zM12 21.8c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-3.7 1 1-3.6-.3-.4c-1.1-1.7-1.6-3.6-1.6-5.6 0-5.7 4.6-10.3 10.3-10.3 2.7 0 5.3 1.1 7.3 3 1.9 2 3 4.5 3 7.3 0 5.7-4.6 10.3-10.3 10.3zm5.5-7.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1c-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.4-.2.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.5-.3z"/></svg>
+  </button>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('waBtn');
+  var panel=document.getElementById('waPanel');
+  var close=document.getElementById('waClose');
+  btn.addEventListener('click',function(){panel.classList.toggle('open')});
+  close.addEventListener('click',function(){panel.classList.remove('open')});
+})();
+</script>
 </body>
 </html>
